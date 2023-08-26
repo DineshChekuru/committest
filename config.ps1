@@ -2,9 +2,11 @@ Install-module -Name Posh-Git -Force
 Import-module -Name Posh-Git 
 Add-PoshGitToProfile -AllHosts -Force
 
-git clone "https://github.com/DineshChekuru/committest.git" -b "dinesh"
+#git clone "https://github.com/DineshChekuru/committest.git" -b "dinesh" 
 
-cd .\committest
+#git clone https://<PAT>@github.com/username/repo.git
+
+#cd .\committest
 
 $commitid = "0b75cfa2838dfe97776823207d824c897d9a0ca3"
 
