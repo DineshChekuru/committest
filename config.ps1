@@ -34,6 +34,6 @@ New-Item -Path $prodfilepath
 }
 
 Set-Content $prodfilepath $content
-
+git push origin dinesh
 }
 }
