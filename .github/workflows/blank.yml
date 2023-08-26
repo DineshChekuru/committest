@@ -29,54 +29,13 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
 
-      - name: Copying files from Dev to Prod directory...
-        shell: pwsh
-        run: | 
-            $commitid = "0b75cfa2838dfe97776823207d824c897d9a0ca3"
-
-            $log_files = New-Object -TypeName "System.Collections.ArrayList"
-            $log_files = git log --pretty=oneline
-            
-            foreach($commit in $log_files) 
-            {
-            $commit = $commit.split(" ")
-            if($commit -match $commitid)
-            {
-            Write-Host "File Modified " $commit[2]
-            
-            $filename = $commit[2]
-            
-            Get-ChildItem -Recurse | Resolve-Path -Relative
-            Write-Host "Getting hash of prod directory before copy"
-            Get-FileHash -InputStream ([IO.MemoryStream]::new([char[]]"$(Get-ChildItem .\prod -Recurse|Out-String)"))
-            Write-Host "copying files..."
-            
-            $filecheck = Get-ChildItem -Path ".\prod\$filename"
-            if(!$filecheck)
-            {
-            New-Item -Path ".\prod\$filename"
-            }
-            Copy-Item -Path ".\dev\$filename" -destination ".\prod\$filename" -Recurse -Force
-            Write-Host "Getting hash of prod directory after copy"
-            Get-FileHash -InputStream ([IO.MemoryStream]::new([char[]]"$(Get-ChildItem .\prod -Recurse|Out-String)"))
-            Write-Output "File copy process completed."
-            Get-ChildItem -Recurse  | Resolve-Path -Relative
-            
-            }
-            }
-        
-      - name: Debug Step 1
-        run: echo "Debugging Step 1"
-
-      - name: Setup Git for Windows' minimal SDK
-        uses: git-for-windows/setup-git-for-windows-sdk@v1
-
-      - name: Debug Step 2
-        run: echo "Debugging Step 2"
-
-      - uses: EndBug/add-and-commit@v9
+      - name: Azure PowerShell Action
+        uses: Azure/powershell@v1
         with:
-          message: '[skip actions] Auto commit to version prod artifacts'
-          committer_name: 'GitHub Actions'
-          committer_email: 'actions@github.com'
-          push: true
+          inlineScript: | 
+            .\config.ps1
+        
+            # Azure PS version to be used to execute the script, example: 1.8.0, 2.8.0, 3.4.0. To use the latest version, specify "latest".
+          azPSVersion: latest
+            # Select the value of the ErrorActionPreference variable for executing the script. Options: stop, continue, silentlyContinue. Default is Stop.
+          errorActionPreference: Stop
