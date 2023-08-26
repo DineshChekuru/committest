@@ -4,9 +4,9 @@ Add-PoshGitToProfile -AllHosts -Force
 
 #git clone "https://github.com/DineshChekuru/committest.git" -b "dinesh" 
 
-#git clone https://<PAT>@github.com/username/repo.git
+git clone https://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@github.com/DineshChekuru/committest.git
 
-#cd .\committest
+cd .\committest
 
 $commitid = "0b75cfa2838dfe97776823207d824c897d9a0ca3"
 
