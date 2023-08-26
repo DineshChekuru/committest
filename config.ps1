@@ -1,3 +1,5 @@
+Install-module -Name Posh-Git -Force
+Import-module -Name Posh-Git 
 Add-PoshGitToProfile -AllHosts -Force
 
 git clone "https://github.com/DineshChekuru/committest.git" -b "dinesh"
