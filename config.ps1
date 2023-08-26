@@ -34,6 +34,8 @@ New-Item -Path $prodfilepath
 }
 
 Set-Content $prodfilepath $content
+git add .
+git commit -m "latest"
 git push origin dinesh
 }
 }
