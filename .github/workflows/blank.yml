@@ -33,4 +33,12 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
+
+      - name: Email notification
+        if: Success()
+        uses: cinotify/github-action@main
+        with:
+          to: 'dchekuru@gmail.com'
+          subject: 'test notification'
+          body: 'This is a notification from GitHub actions.'
           echo test, and deploy your project.
