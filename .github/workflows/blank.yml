@@ -33,6 +33,6 @@ jobs:
         if: Success()
         uses: cinotify/github-action@main
         with:
-          to: 'pallavi-s.kulkarni@capgemini.com'
+          to: 'chekuru-dinesh.chowdary@capgemini.com, dchekuru@gmail.com'
           subject: 'test notification'
           body: 'This is a notification from GitHub actions.'
