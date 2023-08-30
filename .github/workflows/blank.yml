@@ -36,3 +36,11 @@ jobs:
           to: 'chekuru-dinesh.chowdary@capgemini.com, dchekuru@gmail.com'
           subject: 'test notification'
           body: 'This is a notification from GitHub actions.'
+
+      - name: Email notification
+        if: cancelled()
+        uses: cinotify/github-action@main
+        with:
+          to: 'dchekuru@gmail.com'
+          subject: 'cancelling Job'
+          body: 'This is to cancel the job.'
