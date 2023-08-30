@@ -41,6 +41,6 @@ jobs:
         if: failure()
         uses: cinotify/github-action@main
         with:
-          to: 'dchekuru@gmail.com'
+          to: 'dineshc1096@gmail.com'
           subject: 'cancelling Job'
           body: 'This is to cancel the job.'
