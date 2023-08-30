@@ -27,7 +27,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        rn: echo Hello, world!
+        run: echo Hello, world!
 
       - name: Email notification
         if: Success()
@@ -42,5 +42,5 @@ jobs:
         uses: cinotify/github-action@main
         with:
           to: 'dineshc1096@gmail.com'
-          subject: 'cancelling Job'
-          body: 'This is to cancel the job.'
+          subject: 'Job failure'
+          body: 'This is to test the job failure.'
